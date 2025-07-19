@@ -1,0 +1,64 @@
+/* 🔥 Background Animation */
+@keyframes gradient-bg {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.bg-animated {
+  background: linear-gradient(270deg, #667eea, #764ba2, #6b8dd6, #8e54e9);
+  background-size: 800% 800%;
+  animation: gradient-bg 15s ease infinite;
+}
+
+/* 👋 Card Animation */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-card {
+  animation: fadeSlideUp 1s ease forwards;
+}
+
+/* 🌫️ Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* ✨ Input Focus Effect */
+.input-field:focus {
+  box-shadow: 0 0 0 4px rgba(99, 179, 237, 0.4);
+  border-color: #3b82f6;
+}
+
+/* 🌟 Button shimmer */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+  transform: skewX(-20deg);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -75%; }
+  100% { left: 125%; }
+}
