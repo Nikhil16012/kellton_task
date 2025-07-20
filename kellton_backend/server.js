@@ -17,24 +17,26 @@ connectDB();
 
 const app = express();
 
-
-// const allowedOrigins = [
-//   "http://localhost:5173",
-//   "https://todo-task-smart-frontend-gt7r.vercel.app"
-// ];
 const allowedOrigins = [
   'http://localhost:3000',
   'https://kellton-task-5w2z.vercel.app'
 ];
+
 const corsOptions = {
-  origin: allowedOrigins,
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps, curl, etc.)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
 };
-app.use(cors({
-  origin: 'https://kellton-task-5w2z.vercel.app', // your Vercel frontend URL
-  credentials: true, // if you use cookies or authentication
-}));
-app.options('*', cors());
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 app.use(express.json());
 app.use(morgan("dev"));
