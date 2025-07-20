@@ -26,22 +26,15 @@ const allowedOrigins = [
   'http://localhost:3000',
   'https://kellton-task-5w2z.vercel.app'
 ];
-
-// app.use(cors({
-//   origin: allowedOrigins,
-//   credentials: true,
-// }));
 const corsOptions = {
   origin: allowedOrigins,
   credentials: true,
 };
-app.options('*', cors());
-
- app.use(cors(corsOptions));
 app.use(cors({
   origin: 'https://kellton-task-5w2z.vercel.app', // your Vercel frontend URL
   credentials: true, // if you use cookies or authentication
 }));
+app.options('*', cors());
 
 app.use(express.json());
 app.use(morgan("dev"));
